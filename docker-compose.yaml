@@ -13,15 +13,24 @@ services:
   web:
     build: ./project
     volumes:
-      - ./project:/myapp  # 코드 변경 바로 반영 위해
+      - ./project:/myapp
     ports:
       - "3000:3000"
-    depends_on:
-      - db
     environment:
       DATABASE_HOST: db
       DATABASE_USERNAME: postgres
       DATABASE_PASSWORD: password
+  
+  front:
+    image: node:20
+    volumes:
+      - ./front:/app
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    working_dir: /app
+    command: /bin/sh -c "npm install && npm run dev"
 
 volumes:
   db_data:
