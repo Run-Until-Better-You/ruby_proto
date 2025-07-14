@@ -25,6 +25,6 @@ module Project
     # config.eager_load_paths << Rails.root.join("extras")
 
     # 백엔드 전용으로 사용할 경우 이 옵션을 킬 것
-    config.api_only = true
+    # config.api_only = true
   end
 end
